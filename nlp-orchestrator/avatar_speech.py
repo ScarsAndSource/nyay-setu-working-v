@@ -140,5 +140,3 @@ async def convert_to_hinglish(markdown_answer: str) -> str:
         # Fallback: extract first 3 sentences
         sentences = markdown_answer.replace("\n", " ").split(". ")
         return ". ".join(sentences[:3]) + "."
-ces = markdown_answer.replace("\n", " ").split(". ")
-        return ". ".join(sentences[:3]) + "."
