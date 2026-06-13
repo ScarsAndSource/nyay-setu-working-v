@@ -9,7 +9,6 @@ Usage:
     python lawgpt/ingest.py
 """
 
-import os
 import shutil
 import sys
 from pathlib import Path

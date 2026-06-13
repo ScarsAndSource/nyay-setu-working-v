@@ -39,7 +39,7 @@ def _get_embeddings() -> "HuggingFaceEmbeddings":
     if not _HAS_LANGCHAIN:
         raise ImportError("langchain_community is not available in this environment")
     if _embeddings is None:
-        _embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-m3")
+        _embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-m3")  # type: ignore[call-non-callable]
     return _embeddings
 
 
@@ -63,7 +63,7 @@ def load_vectorstore() -> "Chroma":
             "Run 'python lawgpt/ingest.py' before starting the server."
         )
 
-    _vectorstore = Chroma(
+    _vectorstore = Chroma(  # type: ignore[call-non-callable]
         persist_directory=str(CHROMA_DIR),
         embedding_function=_get_embeddings(),
         collection_name=COLLECTION_NAME,
