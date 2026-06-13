@@ -30,17 +30,18 @@ logger = logging.getLogger("lawgpt")
 
 # ── Lifespan (startup / shutdown) ─────────────────────────────────────────────
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-    """Attempt to load the FAISS index at startup."""
+    """Attempt to load the ChromaDB collection at startup."""
     try:
         load_vectorstore()
         count = get_chunk_count()
-        logger.info("✅ FAISS index loaded — RAG ready (%s vectors)", count)
+        logger.info("✅ ChromaDB collection loaded — RAG ready (%s vectors)", count)
     except FileNotFoundError:
-        logger.warning("⚠️ FAISS index not found — run ingest.py")
+        logger.warning("⚠️ ChromaDB store not found — run ingest.py")
     except Exception as e:
-        logger.error("❌ Failed to load FAISS index: %s", e)
+        logger.error("❌ Failed to load ChromaDB collection: %s", e)
 
     yield  # application runs here
 
